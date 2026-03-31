@@ -14,12 +14,12 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_text = update.message.text
 
-    response = client.chat.completions.create(
+    response = client.responses.create(
         model="gpt-4.1-mini",
-        messages=[{"role": "user", "content": user_text}]
+        input=user_text
     )
 
-    reply = response.choices[0].message.content
+    reply = response.output_text
 
     keyboard = [
         [
